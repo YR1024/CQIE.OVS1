@@ -1,0 +1,170 @@
+﻿
+@{
+    Layout = null;
+    CQIE.OVS.Domain.Player playerone = ViewBag.PlayerOne;
+    CQIE.OVS.Domain.Player playertwo = ViewBag.PlayerTwo;
+    CQIE.OVS.Domain.PKInfo pkinfo = ViewBag.PKInfo;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <style>
+        #playerimg{ 
+            margin:10px auto;
+            width:320px;
+            height:320px;
+        } 
+        #playerimg img{
+             border-radius:50%;
+             width:100%;
+             height: 100%;
+        }
+        #vslogo{
+            width:300px;
+            height:300px;
+            position:absolute;
+            top:65%;
+            left:44%;
+        }
+        #vslogo img{
+             width:100%;
+             height: 100%;
+        }
+        body {
+            background-image: url('../../Content/playerImage/background.png');
+            background-repeat:no-repeat;
+            background-size:100% auto;
+        }
+        #playerOne,#playerTwo,img{
+            float:left;
+        }
+       #playerOne{
+            text-align:center;
+            margin-top: 300px;
+            position:absolute;
+            left:20px;
+ 
+       }
+       #playerTwo{
+           text-align:center;
+           margin-top: 300px;
+           position:absolute;
+           right:20px; 
+       }
+       button{
+           cursor:pointer;
+           border:none;
+           width:100px;
+           height:50px;
+           background-color:#ffd800;
+       }
+       a{
+           color:white;
+       }
+       #welcome{
+           color:white;
+       }
+        
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("button").click(function (event) {
+                var player = $(this).val();
+                $.ajax({
+                    type: "post",
+                    url: "Index",
+                    data: { pkinfoId: @pkinfo.ID,player: player },
+                    success: function (data, textStatus) {
+                        if(data=="true"){
+                            alert("投票成功！");
+                        }
+                        else{
+                            alert("请先登录！")
+                        }
+
+                    }
+                })
+            })
+
+            $("#ptLoginBtn").click(function(){
+                $("#LoginDiv").show();
+            })
+
+            $("#login").click(function(event){              
+                var account = $("#account").val();
+                var password = $("#password").val();
+                $.ajax({
+                    type: "post",
+                    url: "Login",
+                    data: { account: account,password: password },
+                    success: function (data, textStatus) {
+                        if(data!="false"){
+                            $("#LoginDiv").hide();
+                            $("#unlogin").hide();
+                            $("#welcome").html("欢迎,"+data);
+                            $("#welcome").show();
+                            $("#logout").show();
+                        }
+
+                    }
+                })
+            })
+            $("#logout").click(function(){
+                $.post("Logout",{},function(data,textStatus){
+                    if(textStatus=="success"){
+                        if(data=="true"){
+                            $("#account").val("");
+                            $("#password").val("");
+                            $("#welcome").hide();
+                            $("#unlogin").show();
+                            $("#logout").hide();
+                        }
+                    }
+                })
+            })
+            
+        })
+    </script>
+</head>
+<body>
+
+    <div id="unlogin" class="login" style="display: block;">
+        <a>你好，请</a><a id="ptLoginBtn" href="#">【登录】</a>
+    </div>
+
+    <div id="welcome" style="display: none;">        
+    </div>
+    <a id="logout" href="#" style="display:none">【注 销】</a>
+
+    <div id="LoginDiv" style="display:none;">
+        账号:<input id="account" type="text" name="account"/><br />
+        密码:<input id="password" type="password" name="password" /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="login" type="button" value="登录" /> 
+    </div>
+    <div id="playerOne">
+        <div id="playerimg"><img src="@playerone.PictureUrl"/></div>
+        <div><a>@playerone.Name</a></div>
+        <div><a>《@pkinfo.PlayerOneSong》</a></div>
+        <br />
+        <div><button id="p1" name="p1" value="playerone">为TA投票</button></div>
+    </div>
+
+    <div id="vslogo"><img src="~/Content/playerImage/VS.png" /></div>
+
+    <div id="playerTwo">
+        <div id="playerimg"><img src="@playertwo.PictureUrl" /></div>
+        <div><a>@playertwo.Name</a></div>
+        <div><a>《@pkinfo.PlayerTwoSong》</a></div>
+        <br />
+        <div><button id="p2" name="p2" value="playertwo">为TA投票</button></div>
+    </div>
+
+</body>
+</html>
+

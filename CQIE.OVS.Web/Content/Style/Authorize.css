@@ -1,0 +1,55 @@
+﻿body
+{
+}
+#divIndex
+{
+    height: 400px;
+}
+#divTitle
+{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+#divone
+{
+    background-image: url("../../Images/User/m_17.gif");
+    background-repeat: no-repeat;
+}
+#divtwo
+{
+    background-image: url("../../Images/User/m_26.gif");
+    background-repeat: repeat-x;
+    height: 6px;
+}
+#divCreate
+{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+#divQuery
+{
+    padding-left: 10px;
+}
+#divTable
+{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+#divTable Table
+{
+    text-align: center;
+}
+#divTable Table th
+{
+    text-align: center;
+}
+
+#divTable Table tr:hover
+{
+    background-color:Yellow;
+    }
+    
+.hightLightRow
+{
+    background-color:Yellow;
+    }

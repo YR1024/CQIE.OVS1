@@ -1,0 +1,20 @@
+﻿.transportOrderTable
+{
+    border-top:1px solid #D4D0C8;
+    border-left:1px solid #D4D0C8;
+    }
+
+.transportOrderTable tr
+{
+    height:30px;
+    }
+.transportOrderTable td
+{
+    border-right:1px solid #D4D0C8;
+    border-bottom:1px solid #D4D0C8;
+    }    
+    
+.cargoTextWidth
+{
+    width:120px;
+    }

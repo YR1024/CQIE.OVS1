@@ -1,0 +1,31 @@
+﻿.btn3 {
+	background-image: url(../Images/but3.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+
+.btn5 {
+	background-image: url(../Images/but5.gif);
+	width: 86px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+
+.btn9 {
+	background-image: url(../Images/but9.gif);
+	width: 134px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+}

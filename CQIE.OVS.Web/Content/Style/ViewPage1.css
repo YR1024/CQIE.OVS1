@@ -1,0 +1,83 @@
+﻿.dataGrid
+{
+    border: 1px solid #007ea2;
+    background-color: #DFF2FF;
+    width:100%;
+}
+
+
+.dataGrid th
+{
+    color: #007ea2;
+    background-color: #B3E1F9;
+    border-bottom:1px solid #007ea2;
+    height: 25px;
+    font-size: 9pt;
+}
+
+.dataGrid tr:hover
+{
+    background-color: #B3E1F9;
+}
+
+.dataGrid td
+{
+    border-bottom: 1px solid #D4D0C8;
+    height: 25px;
+    text-align: center;
+    padding: 0 5px 0 5px;
+    font-size: 9pt;
+}
+
+.pager    
+{    
+    font-size: 12px;    
+    margin: 8px 0;    
+    padding: 3px 0 3px;    
+    text-align: left;    
+}    
+   
+.pager .current    
+{    
+    background-color: #06c;    
+    border: 1px solid #009;    
+    color: #fff;    
+    font-weight: bold;    
+    margin-top: 4px;    
+    padding: 3px 5px;    
+    text-align: center;    
+}    
+   
+.pager a    
+{    
+    margin: 4px 3px;    
+    border: 1px solid #9AAFE5;    
+    padding: 3px 5px;    
+    text-align: center;    
+    text-decoration: none;    
+    color: #2E6AB1;    
+}    
+   
+.pager .pagerInput    
+{    
+    padding: 3px 0 0 0;    
+    border: 1px solid #9AAFE5;    
+    text-align: center;    
+    text-decoration: none;    
+    height: 16px;    
+    width: 30px;    
+}    
+.pager .pagerButton    
+{    
+    border: 1px solid #9AAFE5;    
+    cursor: pointer;    
+}
+
+.tableEdit
+{
+    background-color:lightblue;
+}
+.tableEdit td
+{
+    background-color:White;
+}   

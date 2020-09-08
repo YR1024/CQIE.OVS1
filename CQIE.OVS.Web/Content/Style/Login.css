@@ -1,0 +1,94 @@
+﻿body
+{
+    background-image: url('../../Content/Images/Login/bg.gif');
+}
+.divMain
+{
+    margin-top: 100px;
+   
+}
+.divLoginArea
+{
+    width: 750px;
+    margin-top:-10px;
+    margin-left:-1px
+}
+.divLoginImg
+{
+    margin-top:-10px;
+    margin-left:-1px
+}
+.divMain000
+{
+    height: 133px;
+    width: 375px;
+    background-image: url('../../Content/Images/Login/l_05.jpg');
+    float: left;
+}
+.divInput
+{
+    margin-top: 10px;
+}
+
+.divAccount
+{
+    width: 199px;
+    height: 133px;
+    background-image: url('../../Content/Images/Login/l_06.jpg');
+    float: left;
+}
+
+.divPassword
+{
+    width: 176px;
+    height: 133px;
+    background-image: url('../../Content/Images/Login/l_07.jpg');
+    float: left;
+}
+.divBottom
+{
+    height: 67px;
+    width: 750px;
+    background-image: url('../../Content/Images/Login/l_08.jpg');
+    margin: auto;
+    top: 130px;
+    clear: both;
+}
+.divLoginLine
+{
+    padding-top:5px;
+}
+.divLoginButton
+{
+    }
+.divButton
+{
+    margin-right: 40px;
+}
+.divWords
+{
+    padding-top: 30px;
+}
+.divLabel
+{
+    background-color: Yellow;
+    height: 20px;
+    text-align: center;
+}
+
+.textBox
+{
+    width:146px;
+    border:solid 1px #BDBDBD;
+}
+
+.textBoxPwd
+{
+    width:100px;
+    border:solid 1px #BDBDBD;
+}
+
+.divErrorMsg
+{
+    height:20px;
+    }

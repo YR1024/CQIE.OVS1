@@ -1,0 +1,155 @@
+﻿@model CQIE.OVS.Domain.SysUser
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>在线投票系统 - 重庆工程学院</title>
+    <link href=@Url.Content("/Content/Style/style.css") rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src=@Url.Content("/Scripts/js/jquery.js")></script>
+    <script src=@Url.Content("/Scripts/js/cloud.js") type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.simplemodal.1.4.1.min.js" type="text/javascript"></script>
+    <script language="javascript">
+        $(function ()
+        {
+            $('.loginbox').css({ 'position': 'absolute', 'left': ($(window).width() - 692) / 2 });
+            $(window).resize(function ()
+            {
+                $('.loginbox').css({ 'position': 'absolute', 'left': ($(window).width() - 692) / 2 });
+            })
+        });
+        function CheckPage()
+        {//判断用户名是否为空
+            var loginName = $("#account").val(); //获取用户输入的用户名
+            loginName = $.trim(loginName);
+            if (loginName.length < 1)
+            {
+                alert("用户名不能为空!");
+                $("#account").focus();
+                return false;
+            }
+
+            //判断密码是否为空
+            var pwd = $("#password").val(); //获取用户输入的密码
+            pwd = $.trim(pwd);
+            if (pwd.length < 1)
+            {
+                alert("密码不能为空!");
+                $("#password").focus();
+                return false;
+            }
+            return true;
+        }
+
+        function OnFailure(result)
+        {
+            alert("系统错误,无法登录，请与管理员联系!\n");
+        }
+
+        function OnAJAXBegin()
+        {
+            if (CheckPage())
+            {//如果输入了用户名和密码
+                //在AJAX调用Login方法期间弹出一个模态的对话框
+
+                $.modal("<img src='../Content/Images/loading.gif' alt=''></img>");
+            }
+        }
+
+        function OnComplete(result)
+        {
+            $.modal.close(); //关闭弹出的模态对话框
+            //alert(123);
+            var returnValue = result.responseText; //获取UserController中Login方法返回的结果
+            //alert(returnValue);
+            if (returnValue == "0")
+            {//如果返回结果是“0”说明“用户名或密码错误”
+                alert("用户名或密码错误!");
+                return;
+            }
+            if (returnValue == "1")
+            {//如果返回结果是“0”说明“用户名或密码错误”
+                alert("验证码错误!");
+                return;
+            }
+            else
+            {
+                //alert(returnValue);
+                window.location = returnValue; //否则跳转到Login方法返回的页面
+            }
+        }
+
+        //点击切换验证码
+        function f_refreshtype()
+        {
+            var Image1 = document.getElementById("img");
+            if (Image1 != null)
+            {
+                Image1.src = Image1.src + "?";
+            }
+        }
+    </script>
+</head>
+<body style="background-color:#1c77ac; background-image:url(images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+
+    <div id="mainBody">
+        <div id="cloud1" class="cloud"></div>
+        <div id="cloud2" class="cloud"></div>
+    </div>
+
+
+    <div class="logintop">
+        <span>欢迎登录在线投票系统</span>
+        <ul>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">关于</a></li>
+        </ul>
+    </div>
+
+    <div class="loginbody">
+
+        @*<span class="systemlogo"></span>*@
+        <p>
+            <span style="text-align: center; display: block; font-family: STXihei; font-weight: 100; font-size: 55px; color: lightblue; width: 100%; height: 45px; font-weight: bolder; margin-top: 15px;">重庆工程学院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </p>
+        <p>
+            <span style="text-align: center; display: block; font-family: STXinwei; font-weight: 100; font-size: 40px; color: whitesmoke; width: 100%; height: 45px; margin-top: 25px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在线投票系统</span>
+        </p>
+
+        <div class="loginbox">
+        @using (Html.BeginForm())
+        {
+
+
+#line default
+#line hidden
+
+#line 3 "C:\Users\YR\Desktop\CQIE.OVS\CQIE.OVS.Web\Views\SysUser\Login.cshtml"
+
+        }}
+        {                <ul>
+                    <li>
+                        用户名：<input name="account" id="account" type="text" class="loginuser" onclick="JavaScript:this.value=''" />
+                    </li>
+                    <li>
+                        密&nbsp; &nbsp; 码：<input name="password" id="password" type="password" class="loginpwd" onclick="JavaScript:this.value=''" />
+                    </li>
+                    <li>
+                    </li>
+                    <li> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input name="" type="submit" class="loginbtn" value="登   录" /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label></li>
+                </ul>
+         }
+
+
+        </div>
+
+    </div>
+
+    <div class="loginbm"> Copyright © 2017 - 2018  重庆工程学院  .All Rights Reserved.</div>
+</body>
+</html>

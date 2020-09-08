@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Top</title>
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="/Scripts/js/jquery.js"></script>
+    <script type="text/javascript">
+        //$(function () {
+        //    //顶部导航切换
+        //    $(".nav li a").click(function () {
+        //        $(".nav li a.selected").removeClass("selected")
+        //        $(this).addClass("selected");
+        //    })
+        //})
+    </script>
+
+</head>
+<body style="background:url(/Content/Images/topbg.gif) repeat-x;">
+
+    <div class="topleft">
+        <!--<a href="main.html" target="_parent"><img src="Content/Images/logo.png" title="系统首页" /></a>-->
+        <p>
+            <span style="text-align: left; display: block; font-family: STXingkai; font-weight: 100; font-size: 48px; color: lightblue; width: 100%; height: 30px; font-weight: bolder; margin-left: 35px; margin-top: 15px;">在线投票系统</span>
+        </p>
+        @*<p>
+            <span style="text-align: left; display: block; font-family: STXinwei; font-weight: 100; font-size: 29px; color: whitesmoke; width: 100%; height: 25px; margin-top: 15px; margin-left: 180px;">在线投票系统</span>
+        </p>*@
+    </div>
+
+    <ul class="nav"></ul>
+
+    <div class="topright">
+        <ul>
+            <li><span><img src="/Content/Images/help.png" title="帮助" class="helpimg" /></span><a href="#">帮助</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="../" target="_parent">退出</a></li>
+        </ul>
+
+        <div class="user">
+            <span><a href="../SysUser/ChangePassword" target="rightFrame" style="text-decoration:none;color:white;">@ViewBag.LoginUser</a>：欢迎您！</span>
+        </div>
+
+    </div>
+</body>
+</html>

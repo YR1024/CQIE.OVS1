@@ -1,0 +1,42 @@
+.pagination {
+    font-size: 12px;
+    margin-top:5px;
+    margin-right:27px;
+    float:right;            
+}
+        
+.pagination a {
+    text-decoration: none;
+    color: #606060;
+}
+
+.pagination a:hover
+{
+	background:url('images/p_cur.gif') no-repeat;
+	color: #ffffff;
+}
+
+.pagination a, .pagination span 
+{
+    width:30px;
+    height:18px;
+    background:url('images/p_item.gif') no-repeat;
+    display: block;
+    float: left;
+    padding: 0.3em 0em;
+    margin-right: 2px;
+	margin-bottom: 5px;
+	min-width:1em;
+	text-align:center;
+}
+
+.pagination .current {
+    color: #ffffff;
+    font-weight:bold;
+    background:url('images/p_cur.gif') no-repeat;
+}
+
+.pagination .current.prev, .pagination .current.next
+{
+    background:url('images/pfl.gif') no-repeat;
+}

@@ -1,0 +1,173 @@
+﻿@using CQIE.OVS.Web.Apps
+@model PageList<CQIE.OVS.Domain.PKInfo>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Style/button.css")" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="/Scripts/js/jquery.js"></script>
+    <style type="text/css">
+        .DropdownList{
+            height: 35px;
+            width: 89px;
+        }
+    </style>
+    <script language="javascript">
+        $(function () {
+            //导航切换
+            $(".imglist li").click(function () {
+                $(".imglist li.selected").removeClass("selected")
+                $(this).addClass("selected");
+            })
+            //$("#MatchInfoId").change(function () {
+            //    var matchInfoId = $(this).val();
+            //    $.ajax({
+            //        type:"post",
+            //        url: "Index",
+            //        data: {MatchInfoId:matchInfoId },
+            //        success: function (data) {                      
+            //        }
+            //    });
+            //})
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".click").click(function () {
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function () {
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">对战管理</a></li>
+            <li><a href="#">对战列表</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+        <div class="tools ">
+
+            <ul class="toolbar">
+                <li><span><img src="/Content/Images/t01.png" /></span>@Html.ActionLink("添加", "Create")</li>
+            </ul>
+            <ul class="seachform">
+                @using (Html.BeginForm())
+                {
+                    @Html.DropDownList("MatchInfoId", ViewBag.MatchList as List<SelectListItem>,"--请选择比赛--"  ,new { @class = "DropdownList" })
+                    
+                    <li><input name = "" type="submit" class="scbtn" value="查   询" /></li>
+                }
+            </ul>
+
+        </div>
+
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th width = "100px;" >比赛名称 </th>
+                    <th>选手1</th>
+                    <th>选手1歌曲</th>
+                    <th>选手1票数</th>
+                    <th>选手2</th>
+                    <th>选手2歌曲</th>
+                    <th>选手2票数</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead >
+            <tbody >
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.MatchInfo.Name
+                        </td>
+                        <td>
+                            @item.PlayerOne.Name
+                        </td>
+                        <td>
+                            @item.PlayerOneSong
+                        </td>
+                        <td>
+                            @item.PlayerOneTicket
+                        </td>
+                        <td>
+                            @item.PlayerTwo.Name
+                        </td>
+                        <td>
+                            @item.PlayerTwoSong
+                        </td>
+                        <td>
+                            @item.PlayerTwoTicket
+                        </td>
+                        <td>
+                            @if(item.IsActive == 1)
+                        {
+                                <span>比赛中</span>;
+                        }
+                            else
+                            {
+                                <span>未对战</span>;
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("修改", "Edit", new { id = item.ID }, new { @class = "tablelink" })  |
+                            @if(item.IsActive == 1)
+                            {
+                                @Html.ActionLink("停止对战", "ChangeStatus", new { id = item.ID, type = "Enabled" }, new { onclick = "return confirm('您确定要停止对战吗?')", @class = "tablelink" });
+                            }
+                            else if (item.IsActive == 0)
+                            {
+                                @Html.ActionLink("开启对战", "ChangeStatus", new { id = item.ID, type = "Active" }, new { onclick = "return confirm('您确定要开启对战吗?')", @class = "tablelink" });
+                            }
+                            @* @Html.ActionLink("删除", "Delete"
+                                , new { id = item.ID }
+                                , new { onclick = " return confirm('您确定要删除吗?'); " })*@
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <div class="pager" style="align-content: center; width: 600px; display:inline;">
+                        @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+    </div>
+</body>
+</html>
+

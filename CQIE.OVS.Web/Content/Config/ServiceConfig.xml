@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <components>
+    <!--1.SysUser-->
+    <component id="SysUserService"
+               service="CQIE.OVS.Service.ISysUserService,CQIE.OVS.Service"
+               type="CQIE.OVS.Component.SysUserComponent,CQIE.OVS.Component"
+               isTransactional="true">
+    </component>
+    
+    <!--2.SysRole-->
+    <component id="SysRoleService"
+               service="CQIE.OVS.Service.ISysRoleService,CQIE.OVS.Service"
+               type="CQIE.OVS.Component.SysRoleComponent,CQIE.OVS.Component"
+               isTransactional="true">
+    </component>
+    
+    <!--3.SystemFunction-->
+    <component id="SystemFunctionService"
+               service="CQIE.OVS.Service.ISystemFunctionService,CQIE.OVS.Service"
+               type="CQIE.OVS.Component.SystemFunctionComponent,CQIE.OVS.Component"
+               isTransactional="true">
+    </component>
+    
+    <!--4.Player-->
+    <component id="PlayerService"
+               service="CQIE.OVS.Service.IPlayerService,CQIE.OVS.Service"
+               type="CQIE.OVS.Component.PlayerComponent,CQIE.OVS.Component"
+               isTransactional="true">
+    </component>
+    
+    <!--5.MatchInfo-->
+    <component id="MatchInfoService"
+               service="CQIE.OVS.Service.IMatchInfoService,CQIE.OVS.Service"
+               type="CQIE.OVS.Component.MatchInfoComponent,CQIE.OVS.Component"
+               isTransactional="true">
+    </component>
+    
+    <!--6.PKInfo-->
+    <component id="PKInfoService"
+               service="CQIE.OVS.Service.IPKInfoService,CQIE.OVS.Service"
+               type="CQIE.OVS.Component.PKInfoComponent,CQIE.OVS.Component"
+               isTransactional="true">
+    </component>
+  </components>
+</configuration>

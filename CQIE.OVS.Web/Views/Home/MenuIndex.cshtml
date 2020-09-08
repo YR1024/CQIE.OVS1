@@ -1,0 +1,160 @@
+﻿@using CQIE.OVS.Domain;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>MenuIndex</title>
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="/Scripts/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            ////导航切换
+            //$(".menuson li:not(.title)").click(function () {
+            //    $(".menuson li.active").removeClass("active")
+            //    $(this).addClass("active");
+            //});
+
+            ////$('.title').click(function () {
+            ////    var $ul = $(this).next('ul');
+            ////    $('dd').find('ul').slideUp();
+            ////    if ($ul.is(':visible')) {
+            ////        $(this).next('ul').slideUp();
+            ////    } else {
+            ////        $(this).next('ul').slideDown();
+            ////    }
+            ////});
+            //$(".title:first").click(function () {
+            //    $("li:gt(0):lt(4)").slideDown();
+            //    $("li:gt(5):lt(10)").slideUp();
+            //});
+            //$(".title:last").click(function () {
+            //    $("li:gt(0):lt(4)").slideUp();
+            //    $("li:gt(5):lt(10)").slideDown();
+
+            //});
+
+
+
+            $(".title").bind("click", function () {
+                if ($(this).next().css("display") == "none") {
+                    $(this).next().css("height", $(this).next().children().length * 30 + "px");
+                    $(this).next().slideDown(500);
+                    return;
+                }
+
+                if ($(this).next().css("display") == "block" && $(this).next()[0].tagName == "UL") {
+                    $(this).next().slideUp(500);
+                    return;
+                }
+            });
+        })
+    </script>
+
+
+</head>
+
+<body style="background:#f0f9fd;">
+    <div class="lefttop"><span></span>功能菜单</div>
+
+    <dl class="leftmenu">
+
+        <dd>
+            <div class="menuson">
+                @if (ViewBag.PrivilegeList == null)
+                {
+                    Response.Redirect(@Url.Content("~/RedirectUnAuthorized.htm"));
+                }
+
+                @foreach (SystemFunction menu in ViewBag.PrivilegeList as System.Collections.IEnumerable)
+                {
+                    if (menu.ActionName == null || menu.ActionName.Length == 0)
+                    {
+                        <div class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Content/Images/leftico01.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@menu.SystemFunctionName<i></i></div>
+                        <ul>
+                            @foreach (SystemFunction leafmenu in ViewBag.PrivilegeList as System.Collections.IEnumerable)
+                            {
+                                if (leafmenu.ParentSysFunction != null && leafmenu.ParentSysFunction.ID == menu.ID)
+                                {
+                                    <li><cite></cite><a href="/@leafmenu.ControllerName/@leafmenu.ActionName" target="rightFrame">@leafmenu.SystemFunctionName</a><i></i></li>
+                                }
+                            }
+                        </ul>
+                    }
+                    else if (menu.ParentSysFunction == null && menu.ActionName != null && menu.ActionName.Length != 0)
+                    {
+                        <div class="title"><a href="/@menu.ControllerName/@menu.ActionName" target="rightFrame">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/Content/Images/leftico01.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@menu.SystemFunctionName</a><i></i></div>
+                    }
+                }
+            </div>
+        </dd>
+    </dl>
+
+
+
+
+
+    @*<dl class="leftmenu">
+
+            <dd>
+                <ul class="menuson">
+                    @if (ViewBag.PrivilegeList == null)
+                    {
+                        Response.Redirect(@Url.Content("~/RedirectUnAuthorized.htm"));
+                    }
+                    @foreach (ZDSoft.PIMS.Domain.SysMenu menu in ViewBag.PrivilegeList as System.Collections.IEnumerable)
+                    {
+                        if (menu.ParentSysMenu==null)
+                        {
+                            <li class="title"><span><img src="/Content/Images/leftico01.png" /></span>@menu.Name</li>
+                        }
+                        else
+                        {
+                            <li><a href="/@menu.ControllerName/@menu.ActionName" target="rightFrame">@menu.Name</a></li>
+                        }
+                    }
+                </ul>
+            </dd>
+        </dl>*@
+    @*<div id="divMenu">
+            <table width='119' border='0' cellpadding='0' cellspacing='0'>
+                @if (ViewBag.PrivilegeList == null)
+                {
+                    Response.Redirect(@Url.Content("~/RedirectUnAuthorized.htm"));
+                }
+                @foreach (SysMenu function in ViewBag.PrivilegeList as System.Collections.IEnumerable)
+                {
+                    if (function.ActionName == null || function.ActionName.Length == 0)
+                    {
+                        <tr class="menuRow">
+                            <td align="center" valign="middle" class='Menu1'>
+                                <a><span style="display:block;width:120px;height:18px;">@function.Name</span></a>
+                            </td>
+                        </tr>
+                    }
+                    else if (function.ParentSysMenu == null && function.ActionName != null && function.ActionName.Length != 0)
+                    {
+                        <tr class="menuRow">
+                            <td align='center' valign="middle" class='Menu1'>
+                                <a href="/@function.ControllerName/@function.ActionName" target="ContentPage" style="display:block;width:120px;height:18px;">@function.Name</a>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td align='center' valign="bottom" class='Menu1'>
+                                <a href="/@function.ControllerName/@function.ActionName" target="ContentPage" style="display:block;width:120px;height:18px;">@function.Name</a>
+                            </td>
+                        </tr>
+                        <tr><td><img src="@Url.Content("~/Content/Images/LeftMenu/m_43.gif")" /></td></tr>
+                    }
+                }
+            </table>
+        </div>*@
+
+</body>
+</html>

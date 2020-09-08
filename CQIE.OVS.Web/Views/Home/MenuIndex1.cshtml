@@ -1,0 +1,65 @@
+﻿@using CQIE.OVS.Domain;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="Content/main/css/base.css" rel="stylesheet" />
+    <link href="Content/main/css/jquery.dialog.css" rel="stylesheet" />
+    <link href="Content/main/css/index.css" rel="stylesheet" />
+    <style>
+        .layui-layer-title {
+            background: url('Content/main/images/righttitlebig.png') repeat-x;
+            font-weight: bold;
+            color: #46647e;
+            border: 1px solid #c1d3de;
+            height: 33px;
+            line-height: 33px;
+        }
+    </style>
+    <title>MenuIndex1</title>
+</head>
+<body>
+    <div class="sidebar">
+    <h2 class="sidebar-header"><p>功能导航</p></h2>
+    <ul class="nav">
+            @if (ViewBag.PrivilegeList == null)
+            {
+                Response.Redirect(@Url.Content("~/RedirectUnAuthorized.htm"));
+            }
+
+            @foreach (SystemFunction menu in ViewBag.PrivilegeList as System.Collections.IEnumerable)
+            {
+                if (menu.ActionName == null || menu.ActionName.Length == 0)
+                {
+                    <li class="">
+                        <div class="nav-header"><a href="JavaScript:;" class="ue-clear"><span>@menu.SystemFunctionName</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            @foreach (SystemFunction leafmenu in ViewBag.PrivilegeList as System.Collections.IEnumerable)
+                    {
+                        if (leafmenu.ParentSysFunction != null && leafmenu.ParentSysFunction.ID == menu.ID)
+                        {
+                                    <li><a href="/@leafmenu.ControllerName/@leafmenu.ActionName" target="rightFrame">@leafmenu.SystemFunctionName</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+                else if (menu.ParentSysFunction == null && menu.ActionName != null && menu.ActionName.Length != 0)
+                {
+                    <li class=""><div class="nav-header"><a href="/@menu.ControllerName/@menu.ActionName" target="rightFrame" class="ue-clear"><span>@menu.SystemFunctionName</span><i class="icon hasChild"></i></a></div></li>
+                }
+            }
+        </ul>
+</div>
+</body>
+</html>
+<script src="Content/main/js/jquery.js"></script>
+<script src="Content/main/js/core.js"></script>
+<script src="Content/main/js/jquery.dialog.js"></script>
+<script src="Content/main/js/index.js"></script>
+<script src="Content/main/js/layer_v2.1/layer/layer.js"></script>

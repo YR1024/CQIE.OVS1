@@ -1,0 +1,117 @@
+﻿@model CQIE.OVS.Domain.MatchInfo
+@using CQIE.OVS.Web.Apps
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/Style/ViewPage.css")" rel="stylesheet" type="text/css" />
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <title>Create</title>
+</head>
+<body>
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">比赛管理</a></li>
+            <li><a href="#">添加比赛</a></li>
+        </ul>
+    </div>
+    <div style="padding:8px;" id="staff">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <p> </p>
+            <fieldset style="border: 1px dotted #61B5CF; margin-top: 16px; padding: 10px;">
+                <legend style="font: bold 1em Arial, Helvetica, sans-serif; color: #00008B; background-color: #FFFFFF;">比赛信息</legend>
+                <div class="tools ">
+                    <ul class="seachform">
+                        <li>@Html.LabelFor(model => model.Name)</li>
+                        <li class="scinput">
+                            @Html.EditorFor(model => model.Name)
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tools ">
+                    <ul class="seachform">
+                        <li>@Html.LabelFor(model => model.Address)</li>
+                        <li class="scinput">
+                            @Html.EditorFor(model => model.Address)
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tools ">
+                    <ul class="seachform">
+                        <li>@Html.LabelFor(model => model.Sponsor)</li>
+                        <li class="scinput">
+                            @Html.EditorFor(model => model.Sponsor)
+                            @Html.ValidationMessageFor(model => model.Sponsor)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tools ">
+                    <ul class="seachform">
+                        <li>@Html.LabelFor(model => model.MatchDate)</li>
+                        <li class="scinput">
+                            @Html.EditorFor(model => model.MatchDate)
+                            @Html.ValidationMessageFor(model => model.MatchDate)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tools ">
+                    <ul class="seachform">
+                        <li>@Html.LabelFor(model => model.Contacts)</li>
+                        <li class="scinput">
+                            @Html.EditorFor(model => model.Contacts)
+                            @Html.ValidationMessageFor(model => model.Contacts)
+                        </li>
+                    </ul>
+                </div>
+                <div class="tools ">
+                    <ul class="seachform">
+                        <li>@Html.LabelFor(model => model.Tel)</li>
+                        <li class="scinput">
+                            @Html.EditorFor(model => model.Tel)
+                            @Html.ValidationMessageFor(model => model.Tel)
+                        </li>
+                    </ul>
+                </div>
+
+            </fieldset>
+            <p> </p>
+           
+            <div style="margin-top:10px;">
+                <p>
+                    <input type="submit" value="新   增" class="scbtn" onclick="return getValue()" />&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("返回列表", "Index")
+                </p>
+            </div>
+        }
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+
+        });
+        function getValue() {
+            var s = "";
+            $('input[name="ids"]:checked').each(function () {
+                s = s + $(this).val() + ",";
+            });
+            $('#roleIDs').val(s);
+            $('#statusValue').val($('input[name="radStatusIds"]:checked').val());
+        }
+    </script>
+</body>
+</html>

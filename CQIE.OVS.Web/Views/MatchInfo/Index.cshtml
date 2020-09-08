@@ -1,0 +1,136 @@
+﻿@using CQIE.OVS.Web.Apps
+@model PageList<CQIE.OVS.Domain.MatchInfo>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Style/button.css")" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="/Scripts/js/jquery.js"></script>
+    <style type="text/css">
+        .seachform li label{
+            width: 67px;
+        }
+    </style>
+    
+    <script language="javascript">
+        $(function () {
+            //导航切换
+            $(".imglist li").click(function () {
+                $(".imglist li.selected").removeClass("selected")
+                $(this).addClass("selected");
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".click").click(function () {
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function () {
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">比赛管理</a></li>
+            <li><a href="#">比赛列表</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+        <div class="tools ">
+
+            <ul class="toolbar">
+                <li><span><img src="/Content/Images/t01.png" /></span>@Html.ActionLink("添加", "Create")</li>
+            </ul>
+            <ul class="seachform">
+                @using (Html.BeginForm())
+                {
+                    <li><label>比赛名称：</label><input name="qryMatchName" type="text" class="scinput" /></li>
+                    <li><input name="" type="submit" class="scbtn" value="查   询" /></li>
+                }
+            </ul>
+
+        </div>
+
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th width="100px;">比赛</th>
+                    <th>比赛地址</th>
+                    <th>主办方</th>
+                    <th>比赛时间</th>
+                    <th>联系人</th>
+                    <th>联系电话</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Address
+                        </td>
+                        <td>
+                            @item.Sponsor
+                        </td>
+                        <td>
+                            @item.MatchDate
+                        </td>
+                        <td>
+                            @item.Contacts
+                        </td>
+                        <td>
+                            @item.Tel
+                        </td>
+                                             
+                        <td>
+                            @Html.ActionLink("修改", "Edit", new { id = item.ID }, new { @class = "tablelink" })  |
+                            @Html.ActionLink("对战信息", "PkInfo", new { id = item.ID }, new { @class = "tablelink" })  |
+                        </td>
+                    </tr>
+                  }
+            </tbody>
+        </table>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <div class="pager" style="align-content: center; width: 600px; display:inline;">
+                        @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+    </div>
+</body>
+</html>

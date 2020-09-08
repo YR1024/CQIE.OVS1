@@ -1,0 +1,142 @@
+﻿@using CQIE.OVS.Web.Apps
+@model PageList<CQIE.OVS.Domain.Player>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>无标题文档</title>
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Style/button.css")" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="/Scripts/js/jquery.js"></script>
+    <style type="text/css">
+        td img{
+            height:50px;
+            width:50px;
+        }
+    </style>
+    <script language="javascript">
+        $(function () {
+            //导航切换
+            $(".imglist li").click(function () {
+                $(".imglist li.selected").removeClass("selected")
+                $(this).addClass("selected");
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".click").click(function () {
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function () {
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">选手管理</a></li>
+            <li><a href="#">选手列表</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+        <div class="tools ">
+
+            <ul class="toolbar">
+                <li><span><img src="/Content/Images/t01.png" /></span>@Html.ActionLink("添加", "Create")</li>
+            </ul>
+            <ul class="seachform">
+                @using (Html.BeginForm())
+                {
+                    <li><label>姓名：</label><input name="qryPlayerName" type="text" class="scinput" /></li>
+                    <li><input name="" type="submit" class="scbtn" value="查   询" /></li>
+                }
+            </ul>
+
+        </div>
+
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th width="100px;">姓名</th>
+                    <th>代表作</th>
+                    <th>图片</th>
+                    <th>性别</th>
+                    <th>联系电话</th>
+                    <th>备注</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.MainWork
+                        </td>
+                        <td>
+                            <img src="@item.PictureUrl">
+                        </td>
+                        <td>
+                            @if (item.Sex == 1)
+                            {
+                                <span>男</span>;
+                            }
+                            else
+                            {
+                                <span>女</span>;
+                            }
+                        </td>
+                        <td>
+                            @item.Tel
+                        </td>
+                        <td>
+                            @item.Remarke
+                        </td>
+                        <td>
+                            @Html.ActionLink("修改", "Edit", new { id = item.ID }, new { @class = "tablelink" })  |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <div class="pager" style="align-content: center; width: 600px; display:inline;">
+                        @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+    </div>
+</body>
+</html>

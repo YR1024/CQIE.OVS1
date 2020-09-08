@@ -1,0 +1,267 @@
+body
+{
+    margin: 0;
+    font-size:9pt;
+}
+
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.editor-label
+{
+    margin-top:5px;
+    float:left;
+    width:100px;
+    }
+.editor-field
+{
+    margin-top:5px;
+    }
+.display-label
+{
+    margin-top:5px;
+    float:left;
+    width:100px;
+    }
+.display-field
+{
+    margin-top:5px;
+    }
+#menu ul
+{
+    direction: ltr;
+    float: left;
+    list-style: none;
+}
+
+#divHeader
+{
+    height: 75px;
+}
+#divRender
+{
+    background-color: #34ABCD;
+    border: 0;
+}
+
+#divFooter
+{
+    background-image: url('../Content/Images/top/m_55.gif');
+    background-repeat: repeat-x;
+    text-align: center;
+    height: 29px;
+    clear: both;
+}
+
+#divContentPage
+{
+    float: left;
+    padding: 10px 10px 10px 10px;
+    overflow:auto;
+}
+
+.divSubMenu
+{
+    width: 127px;
+    float: left;
+    background-color: #34ABCD;
+    border: 0;
+}
+
+a
+{
+    font-size: 9pt;
+    text-decoration: none;
+}
+
+
+.titleContentDivider
+{
+    background-image: url('../Content/Images/m_26.gif');
+    background-repeat: repeat-x;
+}
+
+.contentPageTitle
+{
+    font-size:9pt;
+    }
+
+.gridTable
+{
+    background-color:#B3E1F9;
+    border-top:1px solid #007ea2;
+    border-bottom:1px solid #007ea2;
+    }
+.gridTablefirstchild
+{
+    border-left:1px solid #007ea2;
+    }
+    
+.gridTabletd
+{
+    border-bottom:1px solid #007ea2;
+    }
+    
+
+.btn3 {
+	background-image: url(Images/but3.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+.btn4 {
+	background-image: url(Images/but4.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+.btn5 {
+	background-image: url(Images/but5.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+
+.btn6 {
+	background-image: url(Images/but6.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+.btn7 {
+	background-image: url(Images/but7.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+.btn8 {
+	background-image: url(Images/but8.gif);
+	width: 62px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+	cursor:pointer;
+}
+
+.btn9 {
+	background-image: url(Images/but9.gif);
+	width: 134px;
+	height: 21px;
+	border: 0px;color: #4565B1;
+	text-align: left;
+	padding-top: 3px;
+	padding-left: 17px;
+}
+
+input[type="text"]
+{
+    border:solid 1px #BDBDBD;
+}
+
+input[type="password"]
+{
+    border:solid 1px #BDBDBD;
+    width:147px;
+}
+
+textarea 
+{
+    border:solid 1px #BDBDBD;
+    }
+select
+{
+    border:solid 1px #BDBDBD;
+    width:152px;
+    }
+    
+.divNotice
+{
+    color:Red;
+    }
+    
+.menuRow
+{
+    background-image: url('Images/LeftMenu/m_30.gif'); 
+    height: 26px;
+}
+    
+.menuRow_Child
+{
+    background-image: url('Images/LeftMenu/LeftMenuButtonBg1.gif'); 
+    height: 26px;
+}
+    
+.menuRow:hover
+{
+    cursor:pointer;
+    background-image: url('Images/LeftMenu/m_30_pro.gif'); 
+    height: 26px;
+    }
+    
+/*模态对话框样式*/
+/*#basic-modal-content {display:none;}
+#simplemodal-overlay {background-color:#000; cursor:wait;}
+#simplemodal-container {height:39px; width:39px; color:#bbb; background-color:#333;}
+#simplemodal-container .simplemodal-data {}
+#simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#bbb; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
+#simplemodal-container a {color:#ddd;}
+#simplemodal-container a.modalCloseImg {background:url(../img/basic/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
+#simplemodal-container h3 {color:#84b8d9;}
+#simplemodal-container-loading { width:39px;height:39px;}*/
+
+fieldset {
+border: 1px dotted #61B5CF;
+margin-top: 16px;
+padding: 10px;
+}
+legend {
+font: bold 0.8em Arial, Helvetica, sans-serif;
+color: #00008B;
+background-color: #FFFFFF;
+}

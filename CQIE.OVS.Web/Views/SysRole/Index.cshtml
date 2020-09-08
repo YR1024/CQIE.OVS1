@@ -1,0 +1,146 @@
+﻿@using CQIE.OVS.Web.Apps
+@model PageList<CQIE.OVS.Domain.SysRole>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Style/button.css")" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="/Scripts/js/jquery.js"></script>
+
+    <script language="javascript">
+        $(function () {
+            //导航切换
+            $(".imglist li").click(function () {
+                $(".imglist li.selected").removeClass("selected")
+                $(this).addClass("selected");
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".click").click(function () {
+                $(".tip").fadeIn(200);
+            });
+
+            $(".tiptop a").click(function () {
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function () {
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">角色管理</a></li>
+            <li><a href="#">角色列表</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+        <div class="tools ">
+
+            <ul class="toolbar">
+                <li><span><img src="/Content/Images/t01.png" /></span>@Html.ActionLink("添加", "Create")</li>
+            </ul>
+            <ul class="seachform">
+                @using (Html.BeginForm())
+                {
+                    <li><label>角色：</label><input name="qryRoleName" type="text" class="scinput" /></li>
+                    <li><input name="" type="submit" class="scbtn" value="查   询" /></li>
+                }
+            </ul>
+
+        </div>
+
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th width="100px;">角色</th>
+                    <th>拥有菜单</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td align="left">
+                            @{
+                                IList<string> funList = new List<string>();
+                                foreach (var Fun in item.FunList)
+                                {
+                                    if (funList.Contains(Fun.SystemFunctionName) == false)
+                                    {
+                                        funList.Add(Fun.SystemFunctionName);
+                                    }
+                                }
+                                <span>@string.Join(",", funList)</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsActive == 1)
+                            {
+                                <span>激活</span>;
+                            }
+                            else
+                            {
+                                <span>禁用</span>;
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("修改", "Edit", new { id = item.ID }, new { @class = "tablelink" })  |
+                            @if (item.IsActive == 1)
+                            {
+                                @Html.ActionLink("禁用", "ChangeStatus", new { id = item.ID, type = "Enabled" }, new { onclick = "return confirm('您确定要禁用吗?')", @class = "tablelink" });
+                            }
+                            else if (item.IsActive == 0)
+                            {
+                                @Html.ActionLink("激活", "ChangeStatus", new { id = item.ID, type = "Active" }, new { onclick = "return confirm('您确定要激活吗?')", @class = "tablelink" });
+                            }
+                            @* @Html.ActionLink("删除", "Delete"
+                                , new { id = item.ID }
+                                , new { onclick = " return confirm('您确定要删除吗?'); " })*@
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <div class="pager" style="align-content: center; width: 600px; display:inline;">
+                        @Html.Raw(Html.Pager(Model.PageIndex, Model.PageSize, Model.TotalCount, Model.PageIndex))
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+    </div>
+</body>
+</html>
